@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Toy dəvətnaməsi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6e9d9;--paper:#fbf3e7;--ink:#6b5640;--gold:#b48a4f;--rose:#e4a99b;--shade:#e9d2b8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box;margin:0}
+body{min-height:100%;background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;line-height:1.6;text-align:center;overflow-x:hidden}
+.script{font-family:"Great Vibes","Snell Roundhand",cursive;font-weight:400}
+/* envelope */
+#intro{position:fixed;inset:0;z-index:10;background:radial-gradient(circle at 50% 40%,#fbf0e0,#ecd3b6);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);transition:opacity 1s .9s,visibility 0s 1.9s}
+#intro.gone{opacity:0;visibility:hidden}
+.env{position:relative;width:min(86vw,380px);aspect-ratio:1.45;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit;perspective:900px}
+.env:focus-visible{outline:2px solid var(--gold);outline-offset:8px}
+.env .back,.env .front{position:absolute;inset:0;border-radius:4px}
+.env .back{background:#e6cbab;box-shadow:0 18px 40px rgba(107,86,64,.28)}
+.env .card{position:absolute;left:7%;right:7%;top:8%;bottom:8%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--gold);transition:transform .9s .3s ease}
+.env .front{background:linear-gradient(135deg,transparent 49.5%,#f1dcc2 50%) left/50.5% 100% no-repeat,linear-gradient(225deg,transparent 49.5%,#f1dcc2 50%) right/50.5% 100% no-repeat,linear-gradient(0deg,#f4e2cb 55%,transparent 55%);clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%)}
+.env .front{background:#f3dfc6;clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:56%;background:#ecd2b3;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease,z-index 0s .4s;z-index:3}
+.seal{position:absolute;left:50%;top:55%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;z-index:4;background:radial-gradient(circle at 35% 30%,#d9a79a,#b9776a 70%);box-shadow:0 4px 10px rgba(90,40,30,.4),inset 0 0 0 5px rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#fbeee6;font-size:1.5rem;transition:opacity .4s}
+.hint{position:absolute;left:0;right:0;bottom:-2.6rem;font-style:italic;font-size:1.05rem;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .seal{opacity:0}
+.env.open .card{transform:translateY(-55%) scale(1.06)}
+.env.open .hint{opacity:0;animation:none}
+/* invitation */
+main{opacity:0;transition:opacity 1.4s 1s}
+main.show{opacity:1}
+section{min-height:100svh;padding:12vh 8vw;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;max-width:640px;margin:0 auto;position:relative}
+.cover{max-width:none;background:linear-gradient(90deg,rgba(255,255,255,.75) 0,transparent 16%,transparent 84%,rgba(255,255,255,.75) 100%),linear-gradient(180deg,#f9e9d6,#f3d9bd)}
+.cover::before,.cover::after{content:"";position:absolute;top:0;bottom:0;width:15%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 8px,rgba(228,190,160,.35) 8px 18px);opacity:.7}
+.cover::before{left:0;border-radius:0 0 60% 0/0 0 12% 0}.cover::after{right:0;border-radius:0 0 0 60%/0 0 12% 0}
+.cover>*{position:relative;z-index:1}
+.chand{width:150px;color:var(--gold);margin-bottom:1rem}
+.flame{transform-origin:center bottom;animation:flick 2.4s infinite ease-in-out}
+.flame:nth-child(2n){animation-delay:.6s}
+@keyframes flick{50%{transform:scale(1.15,.9);opacity:.8}}
+.tag{font-size:1.05rem;letter-spacing:.3em;text-transform:uppercase}
+.names{font-size:clamp(3.4rem,15vw,5.6rem);line-height:1.05;color:var(--gold)}
+.names span{display:block;font-size:.55em;color:var(--ink)}
+.date{font-size:1.5rem;letter-spacing:.15em}
+.down{font-style:italic;margin-top:2rem;opacity:.75;animation:pulse 2.4s infinite}
+h2{font-size:2.6rem;color:var(--gold);line-height:1.2}
+p{max-width:30ch}
+.rule{width:90px;height:1px;background:var(--gold);margin:.4rem 0}
+.count{display:flex;gap:1rem;margin-top:1rem}
+.count div{min-width:64px;padding:.7rem .4rem;border:1px solid var(--gold);border-radius:999px 999px 6px 6px}
+.count b{display:block;font-size:1.9rem;font-weight:600;line-height:1.1}
+.count small{font-size:.85rem}
+.prog{list-style:none;padding:0;width:100%;max-width:340px}
+.prog li{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px dotted var(--gold)}
+.prog b{color:var(--gold);font-weight:600}
+.btn{display:inline-block;margin-top:1rem;padding:.8rem 1.8rem;border:1px solid var(--gold);border-radius:999px;color:var(--ink);text-decoration:none;font-size:1.1rem;letter-spacing:.08em;background:rgba(255,255,255,.4)}
+.btn:hover,.btn:focus-visible{background:var(--gold);color:#fff;outline:none}
+.field{width:100%;max-width:340px;padding:.8rem 1rem;border:1px solid var(--gold);border-radius:14px;background:rgba(255,255,255,.55);color:var(--ink);font:inherit;font-size:1.1rem;text-align:left;resize:vertical}
+.field::placeholder{color:#9b866e}
+.field:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.note{min-height:1.4rem;font-style:italic;font-size:1rem}
+.arch{width:200px;height:230px;border:2px solid var(--gold);border-radius:100px 100px 0 0;position:relative;margin-top:1rem;background:linear-gradient(#fbf3e7,#f3dcc3)}
+.arch::before{content:"♡";position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:2rem;color:var(--rose);background:var(--bg);padding:0 .4rem}
+.arch::after{content:"❀ ❀ ❀";position:absolute;bottom:8px;left:0;right:0;color:var(--rose);font-size:1.6rem}
+.foot{font-size:1rem;opacity:.7;padding-bottom:2rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <button class="env" id="env" aria-label="Dəvətnaməni aç">
+    <div class="back"></div>
+    <div class="card script" id="monogram"></div>
+    <div class="front"></div>
+    <div class="flap"></div>
+    <div class="seal script" id="seal"></div>
+    <div class="hint">Açmaq üçün toxunun</div>
+  </button>
+</div>
+
+<main id="main">
+  <section class="cover">
+    <svg class="chand" viewBox="0 0 150 150" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M75 0v34M20 96q55 34 110 0M75 34q-50 6-55 62M75 34q50 6 55 62M75 34v56"/>
+      <path d="M12 96h126" />
+      <g fill="#f7d98a" stroke="none">
+        <g class="flame"><ellipse cx="22" cy="74" rx="4" ry="8"/></g>
+        <g class="flame"><ellipse cx="50" cy="66" rx="4" ry="8"/></g>
+        <g class="flame"><ellipse cx="75" cy="62" rx="4" ry="8"/></g>
+        <g class="flame"><ellipse cx="100" cy="66" rx="4" ry="8"/></g>
+        <g class="flame"><ellipse cx="128" cy="74" rx="4" ry="8"/></g>
+      </g>
+      <path d="M22 84v12M50 76v20M75 72v18M100 76v20M128 84v12M40 110v16M75 118v24M110 110v16"/>
+    </svg>
+    <div class="tag">Toy günü</div>
+    <div class="names script" id="names"></div>
+    <div class="date" id="date"></div>
+    <div class="down">Aşağı sürüşdürün</div>
+  </section>
+
+  <section>
+    <h2 class="script">Sizi gözləyirik</h2>
+    <div class="rule"></div>
+    <p>Həyatımızın ən xoşbəxt günündə sevincimizi bölüşmək üçün sizi toyumuza dəvət edirik.</p>
+    <div class="count" id="count" aria-live="off"></div>
+  </section>
+
+  <section>
+    <h2 class="script">Proqram</h2>
+    <ul class="prog" id="prog"></ul>
+  </section>
+
+  <section>
+    <h2 class="script">Məkan</h2>
+    <div class="rule"></div>
+    <p id="venue"></p>
+    <p id="addr"></p>
+    <a class="btn" id="map" target="_blank" rel="noopener">Məkana keç</a>
+    <div class="arch" aria-hidden="true"></div>
+  </section>
+
+  <section>
+    <h2 class="script">Ürək sözləriniz</h2>
+    <p>Yeni ailəmizə xoş arzularınızı yazın, mesajınız birbaşa bizə WhatsApp ilə çatsın.</p>
+    <input class="field" id="wname" type="text" placeholder="Adınız" autocomplete="name" aria-label="Adınız">
+    <textarea class="field" id="wmsg" rows="5" placeholder="Ürək sözləriniz..." aria-label="Ürək sözləriniz"></textarea>
+    <button class="btn" id="wsend" type="button">WhatsApp ilə göndər</button>
+    <div class="note" id="wnote" role="status"></div>
+  </section>
+
+  <section>
+    <h2 class="script">Sizi görmək istərdik</h2>
+    <p>Gəlişinizi əvvəlcədən bildirsəniz, çox sevinərik.</p>
+    <a class="btn" id="rsvp" target="_blank" rel="noopener">Gələcəyəm</a>
+    <div class="names script" style="font-size:3rem;margin-top:2rem" id="sign"></div>
+    <div class="foot">Sevgi ilə</div>
+  </section>
+</main>
+
+<script>
+/* ===== Bunları öz məlumatlarınla dəyiş ===== */
+const C={
+  groom:"Əli", bride:"Leyla",
+  when:"2027-06-12T18:00:00", dateText:"12.06.2027",
+  venue:"Məkanın adı", address:"Ünvan: şəhər, küçə, bina",
+  mapQuery:"Bakı",
+  whatsapp:"994500000000",
+  program:[["17:30","Qonaqların qarşılanması"],["18:00","Nikah mərasimi"],["19:00","Ziyafət"],["22:00","Tort və rəqs"]]
+};
+/* ========================================== */
+const $=id=>document.getElementById(id);
+const ini=C.groom[0]+"&"+C.bride[0];
+$("monogram").textContent=ini; $("seal").textContent=ini;
+$("names").innerHTML=C.groom+"<span>&amp;</span>"+C.bride;
+$("sign").textContent=C.groom+" & "+C.bride;
+$("date").textContent=C.dateText;
+$("venue").textContent=C.venue; $("addr").textContent=C.address;
+$("map").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(C.mapQuery);
+$("rsvp").href="https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent("Salam! Toya gələcəyəm. — "+C.groom+" & "+C.bride);
+$("prog").innerHTML=C.program.map(p=>"<li><b>"+p[0]+"</b><span>"+p[1]+"</span></li>").join("");
+
+function tick(){
+  const d=Math.max(0,new Date(C.when)-new Date()),s=Math.floor(d/1000);
+  const v=[[Math.floor(s/86400),"Gün"],[Math.floor(s%86400/3600),"Saat"],[Math.floor(s%3600/60),"Dəq"],[s%60,"San"]];
+  $("count").innerHTML=v.map(x=>"<div><b>"+x[0]+"</b><small>"+x[1]+"</small></div>").join("");
+}
+tick(); setInterval(tick,1000);
+
+$("wsend").addEventListener("click",()=>{
+  const n=$("wname").value.trim(),m=$("wmsg").value.trim();
+  if(!n||!m){$("wnote").textContent="Zəhmət olmasa, adınızı və mesajınızı yazın.";return}
+  $("wnote").textContent="WhatsApp açılır, göndər düyməsinə basın.";
+  const t="💌 "+n+" yazır:\n\n"+m;
+  window.open("https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(t),"_blank","noopener");
+});
+
+$("env").addEventListener("click",()=>{
+  $("env").classList.add("open");
+  setTimeout(()=>{$("intro").classList.add("gone");$("main").classList.add("show")},1600);
+},{once:true});
+</script>
+</body>
+</html>
